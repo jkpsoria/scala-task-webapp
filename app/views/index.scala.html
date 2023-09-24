@@ -1,5 +1,74 @@
-@()
+@import models.domain.Task
 
-@main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
-}
+@(tasks: Seq[Task], taskForm: Form[Task])(implicit messageProvider: MessagesProvider, request: RequestHeader)
+
+@main("TaskTrack") {
+  <h1 class="text-center m-5">Welcome to TaskTrack!</h1>
+
+  <div class="container">
+      <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      New task
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add new task</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          @helper.form(action = routes.TaskController.create()) {
+          <div class="modal-body">
+            
+              @helper.inputText(taskForm("title"), 'class -> "form-control")
+              @helper.inputText(taskForm("desc"), 'class -> "form-control")
+              @helper.inputText(taskForm("status"), 'class -> "form-control")
+              @helper.inputText(taskForm("deadline"), 'type -> "datetime-local", 'class -> "form-control")          
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- <h2>Tasks</h2> -->
+    <table class="table table-striped text-center shadow p-3 mb-5 bg-body-tertiary rounded mt-5">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Status</th>
+          <th scope="col"><a href="@routes.TaskController.sort()">Due</a></th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+     
+      <tbody>
+        @for(task <- tasks) {
+        <tr>
+          
+          <td>@task.title </td>
+          <td>@task.desc</td>
+          <td>@task.status</td>
+          <td>@task.deadline</td>
+          @helper.form(action = routes.TaskController.remove(task.id)) {
+            <td><button type="submit" class="btn btn-success">Done</button></td>
+          }
+        
+        </tr>
+      }
+      </tbody>
+      
+    </table>
+    
+
+
+  </div>
+
+  }

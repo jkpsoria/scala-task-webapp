@@ -4,7 +4,15 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index()
+GET     /                           controllers.TaskController.index()
+
+GET     /tasks                      controllers.TaskController.show()
+GET    /tasks/sorted               controllers.TaskController.sort()
+
+POST    /tasks                      controllers.TaskController.create()
+
+# DELETE method doesnt work so im using POST instead
+POST    /tasks/:id                  controllers.TaskController.remove(id: UUID)
 
 
 # Map static resources from the /public folder to the /assets URL path

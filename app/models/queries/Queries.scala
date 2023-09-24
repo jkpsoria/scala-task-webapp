@@ -17,12 +17,10 @@ final class Queries @Inject()(protected val dbConfigProvider: DatabaseConfigProv
     import profile.api._
 
 
+    def getTasks: Future[Seq[Task]] = db.run(taskRepo.tasks.result)
     def addTask(task: Task): Future[Int] = db.run(taskRepo.tasks += task)
     def deleteTask(id: UUID): Future[Int] = db.run(taskRepo.tasks.filter(_.id === id).delete)
+    def sortByDeadline: Future[Seq[Task]] = db.run(taskRepo.tasks.sortBy(_.deadline).result)
     //def getTask(id: UUID): Future[Option[Task]] = db.run(taskRepo.tasks.filter(_.id === id).result.headOption)
-    //def getTasks: Future[Seq[Task]] = db.run(taskRepo.tasks.result)
     //def updateTask(id: UUID, task: Task): Future[Int] = db.run(taskRepo.tasks.filter(_.id === id).update(task))
-    //def getTasksByStatus(status: String): Future[Seq[Task]] = db.run(taskRepo.tasks.filter(_.status === status).result)
-    //def getTasksByDate(date: LocalDate): Future[Seq[Task]] = db.run(taskRepo.tasks.filter(_.status === date.toString).result)
-
 }
