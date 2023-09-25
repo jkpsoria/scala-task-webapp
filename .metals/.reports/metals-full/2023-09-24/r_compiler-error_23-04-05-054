@@ -1,0 +1,99 @@
+java.lang.NullPointerException
+occurred in the presentation compiler.
+
+action parameters:
+uri: file://<WORKSPACE>/test/controllers/HomeControllerSpec.scala
+text:
+// package controllers
+
+// import org.scalatestplus.play._
+// import org.scalatestplus.play.guice._
+// import play.api.test._
+// import play.api.test.Helpers._
+// import TaskController
+
+// /**
+//  * Add your spec here.
+//  * You can mock out a whole application including requests, plugins etc.
+//  *
+//  * For more information, see https://www.playframework.com/documentation/latest/ScalaTestingWithScalaTest
+//  */
+// class TaskControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting {
+
+//   "TaskController GET" should {
+
+//     "render the index page from a new instance of controller" in {
+//       val controller = new TaskController(stubControllerComponents())
+//       val home = controller.index().apply(FakeRequest(GET, "/"))
+
+//       status(home) mustBe OK
+//       contentType(home) mustBe Some("text/html")
+//       contentAsString(home) must include ("Welcome to Play")
+//     }
+
+//     "render the index page from the application" in {
+//       val controller = inject[TaskController]
+//       val home = controller.index().apply(FakeRequest(GET, "/"))
+
+//       status(home) mustBe OK
+//       contentType(home) mustBe Some("text/html")
+//       contentAsString(home) must include ("Welcome to Play")
+//     }
+
+//     "render the index page from the router" in {
+//       val request = FakeRequest(GET, "/")
+//       val home = route(app, request).get
+
+//       status(home) mustBe OK
+//       contentType(home) mustBe Some("text/html")
+//       contentAsString(home) must include ("Welcome to Play")
+//     }
+//   }
+// }
+
+
+
+error stacktrace:
+java.util.Arrays.sort(Arrays.java:1438)
+	scala.tools.nsc.classpath.JFileDirectoryLookup.listChildren(DirectoryClassPath.scala:118)
+	scala.tools.nsc.classpath.JFileDirectoryLookup.listChildren$(DirectoryClassPath.scala:102)
+	scala.tools.nsc.classpath.DirectoryClassPath.listChildren(DirectoryClassPath.scala:293)
+	scala.tools.nsc.classpath.DirectoryClassPath.listChildren(DirectoryClassPath.scala:293)
+	scala.tools.nsc.classpath.DirectoryLookup.list(DirectoryClassPath.scala:83)
+	scala.tools.nsc.classpath.DirectoryLookup.list$(DirectoryClassPath.scala:78)
+	scala.tools.nsc.classpath.DirectoryClassPath.list(DirectoryClassPath.scala:293)
+	scala.tools.nsc.classpath.AggregateClassPath.$anonfun$list$3(AggregateClassPath.scala:106)
+	scala.collection.immutable.Vector.foreach(Vector.scala:2124)
+	scala.tools.nsc.classpath.AggregateClassPath.list(AggregateClassPath.scala:102)
+	scala.tools.nsc.util.ClassPath.list(ClassPath.scala:34)
+	scala.tools.nsc.util.ClassPath.list$(ClassPath.scala:34)
+	scala.tools.nsc.classpath.AggregateClassPath.list(AggregateClassPath.scala:31)
+	scala.tools.nsc.symtab.SymbolLoaders$PackageLoader.doComplete(SymbolLoaders.scala:297)
+	scala.tools.nsc.symtab.SymbolLoaders$SymbolLoader.$anonfun$complete$2(SymbolLoaders.scala:249)
+	scala.tools.nsc.symtab.SymbolLoaders$SymbolLoader.complete(SymbolLoaders.scala:247)
+	scala.reflect.internal.Symbols$Symbol.completeInfo(Symbols.scala:1565)
+	scala.reflect.internal.Symbols$Symbol.info(Symbols.scala:1537)
+	scala.reflect.internal.Types$TypeRef.decls(Types.scala:2608)
+	scala.tools.nsc.typechecker.Namers$Namer.enterPackage(Namers.scala:761)
+	scala.tools.nsc.typechecker.Namers$Namer.dispatch$1(Namers.scala:297)
+	scala.tools.nsc.typechecker.Namers$Namer.standardEnterSym(Namers.scala:310)
+	scala.tools.nsc.typechecker.AnalyzerPlugins.pluginsEnterSym(AnalyzerPlugins.scala:496)
+	scala.tools.nsc.typechecker.AnalyzerPlugins.pluginsEnterSym$(AnalyzerPlugins.scala:495)
+	scala.meta.internal.pc.MetalsGlobal$MetalsInteractiveAnalyzer.pluginsEnterSym(MetalsGlobal.scala:67)
+	scala.tools.nsc.typechecker.Namers$Namer.enterSym(Namers.scala:288)
+	scala.tools.nsc.typechecker.Analyzer$namerFactory$$anon$1.apply(Analyzer.scala:50)
+	scala.tools.nsc.Global$GlobalPhase.applyPhase(Global.scala:480)
+	scala.tools.nsc.Global$Run.$anonfun$compileLate$2(Global.scala:1685)
+	scala.tools.nsc.Global$Run.$anonfun$compileLate$2$adapted(Global.scala:1684)
+	scala.collection.IterableOnceOps.foreach(IterableOnce.scala:576)
+	scala.collection.IterableOnceOps.foreach$(IterableOnce.scala:574)
+	scala.collection.AbstractIterator.foreach(Iterator.scala:1300)
+	scala.tools.nsc.Global$Run.compileLate(Global.scala:1684)
+	scala.tools.nsc.interactive.Global.parseAndEnter(Global.scala:668)
+	scala.tools.nsc.interactive.Global.typeCheck(Global.scala:678)
+	scala.meta.internal.pc.PcCollector.<init>(PcCollector.scala:29)
+	scala.meta.internal.pc.PcSemanticTokensProvider$Collector$.<init>(PcSemanticTokensProvider.scala:18)
+	scala.meta.internal.pc.PcSemanticTokensProvider.Collector$lzycompute$1(PcSemanticTokensProvider.scala:18)
+	scala.meta.internal.pc.PcSemanticTokensProvider.Collector(PcSemanticTokensProvider.scala:18)
+	scala.meta.internal.pc.PcSemanticTokensProvider.provide(PcSemanticTokensProvider.scala:71)
+	scala.meta.internal.pc.ScalaPresentationCompiler.$anonfun$semanticTokens$1(ScalaPresentationCompiler.scala:151)
